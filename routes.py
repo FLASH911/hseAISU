@@ -30,9 +30,11 @@ def get_index():
             <title>Gorshkov - app</title>
         </head>
         <body>
-            <h1>Hello!</h1>
-            <h3>API</h3>
-            <a href="./api/mens">Mens</a>
+            <div style="background: green; text-align:center;">
+                <h1 style="font-style:italic; color: red">Hello!</h1>
+                <h3>API</h3>
+                <a href="./api/mens">Mens</a>
+            </div>
         </body>
     </html>
            '''
