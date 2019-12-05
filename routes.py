@@ -1,29 +1,51 @@
+# -*- coding: utf-8 -*-
+from urllib import request
+
 from flask import Blueprint, jsonify
 
-from models import Employee, db
+from models import Vacancy, db, Category, Status
 
 api = Blueprint('api', __name__, url_prefix='/api')
 index = Blueprint('index', __name__, url_prefix='/')
 
-@api.route('/employee')
-def get_employee():
-    return jsonify([(lambda employee: employee.json()) (employee) for employee in Employee.query.all()])
 
-#@api.route('/position')
-#def get_position():
-   # return jsonify([(lambda men: men.json()) (men) for men in position.query.all()])
+@api.route('/vacancy')
+def get_vacancys():
+    return jsonify([(lambda vacancy: vacancy.json())(vacancy) for vacancy in Vacancy.query.all()])
 
-@api.route('/men/id/<int:men_id>')
-def get_men (men_id):
-    men = Employee.query.get(men_id)
-    return men.json() if men else ''
+@api.route('/vacancy/id/<int:vac_id>')
+def get_vacancy(vac_id):
+    vac = Vacancy.query.get(vac_id)
+    return vac.json() if vac else ''
 
-@api.route('/men/name/<string:men_name>;<string:men_job>')
-def put_men (men_name, men_job):
-    addVars = Employee(name=men_name, job=men_job)
-    db.session.add(addVars)
+
+@api.route('/vacancy/add')
+def add_vacancy():
+    name = request.args.get('name')
+    position = request.args.get('position')
+    category_id = request.args.get('category_id')
+    status_id = request.args.get('status_id')
+    addArgs = Vacancy(name=name, position=position, category_id = category_id, status_id = status_id)
+    db.session.add(addArgs)
     db.session.commit()
-    return jsonify(addVars.json())
+    return jsonify(addArgs.json())
+
+@api.route('/category/add')
+def add_category():
+    name = request.args.get('name')
+    addArgs = Category(name=name)
+    db.session.add(addArgs)
+    db.session.commit()
+    return jsonify(addArgs.json())
+
+@api.route('/status/add')
+def add_status():
+    name = request.args.get('name')
+    addArgs = Status(name=name)
+    db.session.add(addArgs)
+    db.session.commit()
+    return jsonify(addArgs.json())
+
 
 @index.route('/')
 @index.route('/index')
@@ -37,7 +59,7 @@ def get_index():
             <div style="background: green; text-align:center;">
                 <h1 style="font-style:italic; color: red">Hello!</h1>
                 <h3>API</h3>
-                <a href="./api/employee">Employee</a>
+                <a href="./api/vacancy">vacancy</a>
             </div>
         </body>
     </html>
