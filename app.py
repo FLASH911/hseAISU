@@ -27,9 +27,9 @@ with app.app_context():
     db.session.add(now)
     db.session.add(archive)
     db.session.commit()
-    db.session.add(Vacancy(name='Директор магазина', position='Директор', category_id = director.id, status_id = now.id))
-    db.session.add(Vacancy(name='Оператор котельной на завод', position='Оператор', category_id = laborer.id, status_id = now.id))
-    db.session.add(Vacancy(name='Java программист (Middle)', position='Программист', category_id = engineer.id, status_id = archive.id))
+    db.session.add(Vacancy(position='Директор', category_id = director.id, status_id = now.id))
+    db.session.add(Vacancy(position='Оператор котельной на завод', category_id = laborer.id, status_id = now.id))
+    db.session.add(Vacancy(position='Java программист (Middle)', category_id = engineer.id, status_id = archive.id))
     db.session.commit()
 
 if __name__ == '__main__':

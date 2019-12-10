@@ -19,11 +19,10 @@ def get_vacancy(vac_id):
 
 @api.route('/vacancy/add')
 def add_vacancy():
-    name = request.args.get('name')
     position = request.args.get('position')
     category_id = request.args.get('category_id')
     status_id = request.args.get('status_id')
-    addArgs = Vacancy(name=name, position=position, category_id = category_id, status_id = status_id)
+    addArgs = Vacancy(position=position, category_id = category_id, status_id = status_id)
     db.session.add(addArgs)
     db.session.commit()
     return jsonify(addArgs.json())

@@ -8,7 +8,6 @@ db = SQLAlchemy()
 class Vacancy(db.Model):
     __tablename__ = 'Vacancy'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(120))
     position = db.Column(db.String(120))
     category_id = db.Column(db.Integer, ForeignKey('Category.id'))
     category = relationship('Category')
@@ -16,7 +15,7 @@ class Vacancy(db.Model):
     status = relationship('Status')
 
     def json(self):
-        return {"id": self.id, "position": self.position, "category": self.category.json(), "status": self.status.json()}
+        return {"id": self.id, "position": self.position,  "category": self.category.json(), "status": self.status.json()}
 
 class Category(db.Model):
     __tablename__ = 'Category'
