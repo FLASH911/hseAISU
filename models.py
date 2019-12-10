@@ -16,7 +16,7 @@ class Vacancy(db.Model):
     status = relationship('Status')
 
     def json(self):
-        return {"id": self.id, "position": self.position, "category": self.category.json(), "status": self.category.json()}
+        return {"id": self.id, "position": self.position, "category": self.category.json(), "status": self.status.json()}
 
 class Category(db.Model):
     __tablename__ = 'Category'
