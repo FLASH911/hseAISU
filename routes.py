@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from urllib import request
-
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify,  request
 
 from models import Vacancy, db, Category, Status
 
