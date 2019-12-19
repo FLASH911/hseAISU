@@ -56,7 +56,8 @@ def get_index():
             <div style="text-align:center;">
                 <h1 style="font-style:italic; color: red">Hello!</h1>
                 <h3>API</h3>
-                <a href="./api/vacancy">vacancy</a>
+                <a href="./api/vacancy">All vacancy</a>
+                <a href="./api/vacancy/add?position=Director_X5&category_id=2&status_id=1">Add Director X5</a>
             </div>
         </body>
     </html>
